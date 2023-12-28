@@ -15,3 +15,5 @@ $ cd tpaint
 $ python main.py
 ```
 Press Q to quit.
+
+![](https://github.com/Jedddy/tpaint/blob/master/assets/example.gif)
