@@ -12,6 +12,7 @@ $ git clone github.com/Jedddy/tpaint
 
 ```
 $ cd tpaint
+$ pip install -r requirements.txt (for windows only)
 $ python main.py
 ```
 Press Q to quit.
