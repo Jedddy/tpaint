@@ -4,6 +4,7 @@ import curses
 
 color_positions = {}
 
+
 class Paint:
     window: "curses._CursesWindow"
 
@@ -20,7 +21,7 @@ class Paint:
     def show_palette(self):
         for color, posx in zip(
             range(self.color_range),
-            range((self.maxx // 2) - (self.color_range  * 2), self.maxx, 4)
+            range((self.maxx // 2) - (self.color_range * 2), self.maxx, 4),
         ):
             pair = curses.color_pair(color + 1)
             color_positions[posx] = pair
@@ -29,7 +30,7 @@ class Paint:
 
         for idx, letter in enumerate("ERASER"):
             self.window.addstr(self.maxy - 1, idx, letter)
-            color_positions[idx] = -2 # i picked -2 for the color for eraser
+            color_positions[idx] = -2  # i picked -2 for the color for eraser
 
     def __call__(self, window: "curses._CursesWindow"):
         curses.curs_set(0)
@@ -42,7 +43,7 @@ class Paint:
         self.window = window
         self.color_range = 256 // 32
         pressed = False
-        current_color = - 1
+        current_color = -1
 
         self.show_palette()
 
@@ -58,9 +59,9 @@ class Paint:
                 _, x, y, _, bstate = curses.getmouse()
 
                 if (
-                    bstate & curses.BUTTON1_CLICKED and
-                    y == self.maxy - 1 and
-                    x in color_positions
+                    bstate & curses.BUTTON1_CLICKED
+                    and y == self.maxy - 1
+                    and x in color_positions
                 ):
                     current_color = color_positions[x]
 
