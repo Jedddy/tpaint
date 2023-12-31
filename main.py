@@ -76,7 +76,7 @@ class Paint:
                 new_maxy, new_maxx = self.window.getmaxyx()
 
                 if new_maxy < self.maxy:
-                    self.grid = self.grid[: new_maxy - 1]
+                    self.grid = self.grid[:new_maxy - 1]
 
                 if new_maxx < self.maxx:
                     self.grid = [row[:new_maxx] for row in self.grid]
@@ -124,8 +124,11 @@ class Paint:
 
                 if pressed and y < self.maxy - 1:
                     # 2 assignments so we paint 2 blocks lol
-                    self.grid[y][x % (self.maxx - 1)] = current_color
-                    self.grid[y][(x + 1) % (self.maxx - 1)] = current_color
+                    x = max(0, min(x, self.maxx - 2))
+                    x2 = max(0, min(x + 1, self.maxx - 2))
+
+                    self.grid[y][x] = current_color
+                    self.grid[y][x2] = current_color
 
             if key == ord("v"):
                 self.use_cursor = not self.use_cursor
